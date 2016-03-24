@@ -28,3 +28,26 @@ include device/samsung/jf-common/BoardConfigCommon.mk
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := jfvelte,jfveltexx,i9515,I9515,GT-I9515,GT-i9515,gt-i9515,I9515L,i9515L,i9515l,I9515l,gt-i9515l,GT-I9515L,jfltexx,i9505,GT-I9505,jgedlte,i9505g,GT-I9505G,jflte
+
+# ANT
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# Bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := 
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
+BOARD_HAVE_BLUETOOTH_BCM := false
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_USE_SMD_TTY := true
+
+# Wifi
+BOARD_HAVE_SAMSUNG_WIFI := false
+#WIFI_BAND := 802_11_ABG
+#WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
+BOARD_HAS_QCOM_WLAN              := true
+TARGET_USES_WCNSS_CTRL           := true
+TARGET_PROVIDES_WCNSS_QMI        := true
+TARGET_USES_QCOM_WCNSS_QMI       := true
+BOARD_WLAN_DEVICE                := qcwcn
+WIFI_DRIVER_FW_PATH_STA          := "sta"
+WIFI_DRIVER_FW_PATH_AP           := "ap"
