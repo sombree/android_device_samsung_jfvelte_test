@@ -15,10 +15,34 @@
 #
 
 ## (2) Also get non-open-source specific aspects if available
-$(call inherit-product-if-exists, /home2/android/system/vendor/samsung/jf-gsm-common/jf-gsm-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/jf-gsm-common/jf-gsm-common-vendor.mk)
 
 ## device overlays
 DEVICE_PACKAGE_OVERLAYS += device/samsung/jfvelte/overlay
 
 # Inherit from jf-common
 $(call inherit-product, device/samsung/jf-common/jf-common.mk)
+
+# Prima opensource driver files
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/prima/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+
+# add support for our wifi
+PRODUCT_PACKAGES += \
+    wcnss_service \
+    libwcnss_qmi
+
+# Bluetooth script and proprietary files (for now here in order not to bloat TheMuppets)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/bluetooth/btnvtool:system/bin/btnvtool \
+    $(LOCAL_PATH)/bluetooth/hci_qcomm_init:system/bin/hci_qcomm_init \
+    $(LOCAL_PATH)/bluetooth/libbtnv.so:system/lib/libbtnv.so
+
+# SoftAP
+PRODUCT_PACKAGES += \
+    libQWiFiSoftApCfg \
+    libqsap_sdk
